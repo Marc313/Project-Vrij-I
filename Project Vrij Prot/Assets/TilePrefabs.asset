@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7382cf4b576a02947a7a655c84a388ea, type: 3}
+  m_Name: TilePrefabs
+  m_EditorClassIdentifier: 
+  Treeblock: {fileID: 5302094203813085944, guid: 93d1bb80b43a061439088e72cc7c31ca, type: 3}
+  Bird: {fileID: 3905871910861676434, guid: 4ba654a425a810f4c88420556af0ba7e, type: 3}
+  Water: {fileID: 8687954677457972205, guid: 1427ad9bb532131498d800beeefb16e8, type: 3}
