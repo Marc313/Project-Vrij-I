@@ -5,6 +5,8 @@ public class TilePrefabs : ScriptableObject
 {
     [Header("Blocks")]
     public GameObject Treeblock;
+    public GameObject BlaadjeBlock;
+    public GameObject BloemetjeBlock;
 
     [Header("Action Tiles")]
     public GameObject Bird;

@@ -47,12 +47,12 @@ public class GridManager : Singleton<GridManager>
         return grid.ContainsKey(v) && grid[v].GetType() == typeof(ActionTile);
     }*/
 
-    public void OnPlayerAction(Vector3Int tilePosition, KeyCode pressedKey)
+    public void OnPlayerAction(Vector3Int tilePosition, InputManager.PlayerActions action)
     {
         layers = GameManager.Instance.Layers;
         currentLayer = GameManager.currentLayerIndex;
 
-        layers[currentLayer]?.OnPlayerAction(tilePosition, pressedKey);
+        layers[currentLayer]?.OnPlayerAction(tilePosition, action);
     }
 }
 

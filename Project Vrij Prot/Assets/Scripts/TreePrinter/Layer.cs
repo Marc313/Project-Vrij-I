@@ -69,11 +69,11 @@ public class Layer : MonoBehaviour
         tileReferences.Add(tilePos, tile);
     }
 
-    public void OnPlayerAction(Vector3Int tilePosition, KeyCode pressedKey)
+    public void OnPlayerAction(Vector3Int tilePosition, InputManager.PlayerActions action)
     {
         if (tileReferences != null && tileReferences[tilePosition] != null)
         {
-            tileReferences[tilePosition].PerformTileAction(pressedKey);
+            tileReferences[tilePosition].PerformTileAction(action);
         }
     }
 }

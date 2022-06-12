@@ -4,11 +4,11 @@ public class ActionTile : Tile
 {
     public enum Tiletype { WATER, BIRD }
 
-    public TilePrefabs tilePrefabs;
     public Tiletype type;
 
-    private void OnEnable()
+    protected override void Start()
     {
+        base.Start();
         if (type == Tiletype.BIRD)
         {
             PlaceBlock(tilePrefabs.Bird);
@@ -31,9 +31,9 @@ public class ActionTile : Tile
         //StartCoroutine(nameof(MoveCharacterRoutine(BirdObject.pos)))
     }
 
-    public override void PerformTileAction(KeyCode pressedKey)
+    public override void PerformTileAction(InputManager.PlayerActions action)
     {
-        if(pressedKey == KeyCode.Return)
+        if(action == InputManager.PlayerActions.SHOO_ANIMAL)
         {
             BullyBird();
         }

@@ -2,20 +2,27 @@ using UnityEngine;
 
 public class BlockPlaceTile : Tile
 {
-    public GameObject TreeBlockPrefab;
-
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         CanPlaceBlocks = true;
     }
 
-    public override void PerformTileAction(KeyCode pressedKey)
+    public override void PerformTileAction(InputManager.PlayerActions action)
     {
         if (!CanPlaceBlocks) return;
 
-        if(pressedKey == KeyCode.Space)
+        if (action == InputManager.PlayerActions.PLACE_TREE)
         {
-            PlaceBlock(TreeBlockPrefab);
+            PlaceBlock(tilePrefabs.Treeblock);
+        }
+        else if (action == InputManager.PlayerActions.PLACE_BLAADJE)
+        {
+            PlaceBlock(tilePrefabs.BlaadjeBlock);
+        } 
+        else if (action == InputManager.PlayerActions.PLACE_BLOEMETJE)
+        {
+            PlaceBlock(tilePrefabs.BloemetjeBlock);
         }
     }
 }

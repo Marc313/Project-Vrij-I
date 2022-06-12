@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public TileColors tileColors;
+    protected TileColors tileColors;
+    protected TilePrefabs tilePrefabs;
     protected SpriteRenderer sprite;
     protected GameObject TileObject;
     // MAKE THIS ENUM LATER
@@ -10,7 +11,7 @@ public class Tile : MonoBehaviour
 
     protected bool CanPlaceBlocks;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         GetSpriteRendererComponent();
     }
@@ -18,11 +19,12 @@ public class Tile : MonoBehaviour
     public void GetSpriteRendererComponent()
     {
         sprite = GetComponent<SpriteRenderer>();
-
     }
 
-    private void Start()
+    protected virtual void Start()
     {
+        tileColors = TileSettings.Instance.tileColors;
+        tilePrefabs = TileSettings.Instance.tilePrefabs;
         UpdateTileColor();
     }
 
@@ -45,7 +47,7 @@ public class Tile : MonoBehaviour
         TileObject = Instantiate(BlockPrefab, blockPos, Quaternion.identity);
     }
 
-    public virtual void PerformTileAction(KeyCode pressedKey)
+    public virtual void PerformTileAction(InputManager.PlayerActions action)
     {
 
     }
