@@ -15,8 +15,8 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        //UpdateTutorialText("Hold space on the green tiles to build a tree");
-        UpdateTutorialText("Press Enter to collect the water");
+        UpdateTutorialText("Hold space on the brown tiles to build a tree");
+        //UpdateTutorialText("Press Enter to collect the water");
     }
 
     private void OnEnable()

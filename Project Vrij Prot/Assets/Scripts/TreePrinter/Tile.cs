@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    protected enum TileColorType { NOBLOCK, TREE, BLAADJE, BLOEMETJE}
+
+    [SerializeField] protected TileColorType colorType;
     protected TileColors tileColors;
     protected TilePrefabs tilePrefabs;
     protected SpriteRenderer sprite;
     protected GameObject TileObject;
-    // MAKE THIS ENUM LATER
-    public bool isGreen;
 
     protected bool CanPlaceBlocks;
 
@@ -30,13 +31,22 @@ public class Tile : MonoBehaviour
 
     public void UpdateTileColor()
     {
-        if (isGreen)
+        switch (colorType)
         {
-            sprite.color = tileColors.Green;
-        }
-        else if (!isGreen)
-        {
-            sprite.color = tileColors.Red;
+            
+            case TileColorType.TREE:
+                sprite.color = tileColors.Tree;
+                break;
+            case TileColorType.BLAADJE:
+                sprite.color = tileColors.Blaadje;
+                break;
+            case TileColorType.BLOEMETJE:
+                sprite.color = tileColors.Bloemetje;
+                break;
+            case TileColorType.NOBLOCK:
+            default:
+                sprite.color = tileColors.NoBlock;
+                break;
         }
     }
 
