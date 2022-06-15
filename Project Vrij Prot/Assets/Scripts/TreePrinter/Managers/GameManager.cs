@@ -70,6 +70,7 @@ public class GameManager : Singleton<GameManager>
         currentLayer = Layers[0];
 
         movement.SetSpeed(currentLayer.printerSpeed);
+        movement.currentWaypointSet = currentLayer.waypoints;   // Make a setter
         currentLayer.gameObject.SetActive(true);
         movement.StartMovement();
     }
@@ -95,7 +96,9 @@ public class GameManager : Singleton<GameManager>
             // Do things with new layer
             currentLayer.transform.SetYPosition(CurrentHeight);
             currentLayer.gameObject.SetActive(true);
-            movement.SetSpeed(Layers[currentLayerIndex].printerSpeed);
+            movement.SetSpeed(currentLayer.printerSpeed);
+            movement.SetCurrentWaypointSet(currentLayer.waypoints);
+
 
             Invoke(nameof(ContinueIfNotPaused), .1f);
         }

@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class Layer : MonoBehaviour
 {
     public float printerSpeed = 10;
+    public WaypointSet waypoints;
     public bool IncreaseHeightAfterLayer;
     public UnityEvent AfterLayer;
 
@@ -12,15 +13,9 @@ public class Layer : MonoBehaviour
 
     private Tile[] tiles;
 
-
-    // public BlockPlaceTile[] blockPlaceTiles;
-    // public ActionTile[] actionTiles { get; private set; }
-
     private void Awake()
     {
         tiles = GetComponentsInChildren<Tile>();
-        //blockPlaceTiles = GetComponentsInChildren<BlockPlaceTile>();
-        //actionTiles = GetComponentsInChildren<ActionTile>();
 
         tileReferences = new Dictionary<Vector3Int, Tile>();
     }
@@ -35,17 +30,6 @@ public class Layer : MonoBehaviour
             {
                 AddTileReference(tile);
             }
-
-            /*if (blockPlaceTiles != null)
-            foreach (Tile tile in blockPlaceTiles)
-            {
-                AddTileReference(tile);
-            }
-            if (actionTiles != null)
-            foreach (Tile tile in actionTiles)
-            {
-                AddTileReference(tile);
-            }*/
         }
     }
 

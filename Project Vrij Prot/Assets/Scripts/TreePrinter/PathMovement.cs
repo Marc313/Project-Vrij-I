@@ -3,13 +3,11 @@ using UnityEngine;
 public class PathMovement : MovingObject
 {
     public float treeGrowDistance;
-    public Transform[] waypoints;
-    //[HideInInspector] public bool isActive = true;
+    [HideInInspector] public WaypointSet currentWaypointSet;
 
-    private int currentWaypoint;
+    private int currentWaypointIndex;
     private Vector3 oldPos;
     private Vector3 targetPos;        // The position of the waypoint the indicator is currently traveling to.
-    private bool isAscending = true;
 
     public Vector3Int ClosestTile()
     {
@@ -18,46 +16,21 @@ public class PathMovement : MovingObject
 
     private void DecideNextPoint()
     {
-        if (isAscending)
+        // Laatste is waypoint.Length - 1, dus een na laatste is waypoints.Lenght - 2
+        if (currentWaypointIndex < currentWaypointSet.waypoints.Length - 2)
         {
-            // Laatste is waypoint.Length - 1, dus een na laatste is waypoints.Lenght - 2
-            if (currentWaypoint < waypoints.Length - 2)
-            {
-                MoveToNextWaypoint(true);
-            }
-            else if (currentWaypoint == waypoints.Length - 2)
-            {
-                MoveToNextWaypoint(false);
-            }
-            else
-            {
-                isAscending = false;
-                MoveToPreviousWaypoint(true);
-            }
-        } 
-        else if (!isAscending)
+            MoveToNextWaypoint(true);
+        }
+        else if (currentWaypointIndex == currentWaypointSet.waypoints.Length - 2)
         {
-            if (currentWaypoint > 1)
-            {
-                MoveToPreviousWaypoint(true);
-            } 
-            else if (currentWaypoint == 1)
-            {
-                MoveToPreviousWaypoint(false);
-            }
-            else
-            {
-                //GameManager.Instance.MoveToNextLayer();
-                isAscending = true;
-                MoveToNextWaypoint(true);
-            }
+            MoveToNextWaypoint(false);
         }
     }
 
     private void MoveToNextWaypoint(bool continueAutomatically)
     {
-        Vector3Int previousWaypoint = waypoints[currentWaypoint].position.ToVector3Int();
-        Vector3Int nextWaypoint = waypoints[currentWaypoint + 1].position.ToVector3Int();
+        Vector3Int previousWaypoint = currentWaypointSet.waypoints[currentWaypointIndex].position.ToVector3Int();
+        Vector3Int nextWaypoint = currentWaypointSet.waypoints[currentWaypointIndex + 1].position.ToVector3Int();
 
         oldPos = new Vector3(previousWaypoint.x, CurrentHeight(), previousWaypoint.z);
         targetPos = new Vector3(nextWaypoint.x, CurrentHeight(), nextWaypoint.z);
@@ -70,13 +43,13 @@ public class PathMovement : MovingObject
             StartCoroutine(MoveCharacterRoutine(oldPos, targetPos, () => GameManager.Instance.MoveToNextLayer()));
         }
 
-        currentWaypoint++;
+        currentWaypointIndex++;
     }
 
-    private void MoveToPreviousWaypoint(bool continueAutomatically)
+    /*private void MoveToPreviousWaypoint(bool continueAutomatically)
     {
-        Vector3Int oldWaypoint = waypoints[currentWaypoint].position.ToVector3Int();
-        Vector3Int prevWaypoint = waypoints[currentWaypoint - 1].position.ToVector3Int();
+        Vector3Int oldWaypoint = currentWaypointSet.waypoints[currentWaypoint].position.ToVector3Int();
+        Vector3Int prevWaypoint = currentWaypointSet.waypoints[currentWaypoint - 1].position.ToVector3Int();
 
         Vector3 oldPos = new Vector3(oldWaypoint.x, CurrentHeight(), oldWaypoint.z);
         Vector3 targetPos = new Vector3(prevWaypoint.x, CurrentHeight(), prevWaypoint.z);
@@ -90,7 +63,7 @@ public class PathMovement : MovingObject
             StartCoroutine(MoveCharacterRoutine(oldPos, targetPos, () => GameManager.Instance.MoveToNextLayer()));
         }
         currentWaypoint--;
-    }
+    }*/
 
     public void PauseMovement()
     {
@@ -104,6 +77,13 @@ public class PathMovement : MovingObject
         DecideNextPoint();
     }
 
+    public void SetCurrentWaypointSet(WaypointSet newSet)
+    {
+        currentWaypointSet = newSet;
+        currentWaypointIndex = 0;
+        transform.position = newSet.waypoints[0].position;
+    }
+
     public void ContinueMovement()
     {
         UnfreezeObject();
@@ -111,6 +91,7 @@ public class PathMovement : MovingObject
 
         Vector3Int currentPosition = transform.position.ToVector3Int();
         Vector3 oldPosition = new Vector3(currentPosition.x, CurrentHeight(), currentPosition.z);
+        //targetPos = currentWaypointSet.waypoints[currentWaypointIndex].position;
         StartCoroutine(MoveCharacterRoutine(oldPosition, targetPos, () => DecideNextPoint()));
     }
 
