@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a978291450ff84496e7eeaec92692c, type: 3}
   m_Name: TileColors
   m_EditorClassIdentifier: 
-  NoBlock: {r: 1, g: 0, b: 0, a: 0.39215687}
-  Blaadje: {r: 0.19607843, g: 1, b: 0, a: 0.39215687}
-  Tree: {r: 0.41509432, g: 0.15538765, b: 0, a: 0.39215687}
-  Bloemetje: {r: 1, g: 0.25943398, b: 0.98867583, a: 0.39215687}
-  Indicator: {r: 0.39215687, g: 0.95686275, b: 1, a: 0.7607843}
+  NoBlock: {r: 1, g: 0, b: 0, a: 0.78431374}
+  Blaadje: {r: 0.19607843, g: 1, b: 0, a: 0.78431374}
+  Tree: {r: 0.41509432, g: 0.15538765, b: 0, a: 0.78431374}
+  Bloemetje: {r: 1, g: 0.25943398, b: 0.98867583, a: 0.78431374}
+  Indicator: {r: 0.39215687, g: 0.95686275, b: 1, a: 1}

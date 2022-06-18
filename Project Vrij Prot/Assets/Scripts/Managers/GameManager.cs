@@ -128,14 +128,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    /*private void ContinueMovementIfNotPaused()
-    {
-        if (!isPaused)
-        {
-            movement.ContinueMovement();
-        }
-    }*/
-
     public void IncreaseCurrentHeight()
     {
         CurrentHeight++;

@@ -50,7 +50,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void PlaceBlock(GameObject BlockPrefab)
+    public virtual void PlaceBlock(GameObject BlockPrefab)
     {
         CanPlaceBlocks = false;
         Vector3 blockPos = transform.position.ToVector3Int() + 0.5f * Vector3.up;
