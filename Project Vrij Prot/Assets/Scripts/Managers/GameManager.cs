@@ -20,7 +20,7 @@ public class GameManager : Singleton<GameManager>
 
     private bool isPaused;
     private PathMovement movement;
-    private Layer currentLayer;
+    public Layer currentLayer;
 
     private void Awake()
     {
@@ -126,6 +126,17 @@ public class GameManager : Singleton<GameManager>
         {
             movement.ContinueMovement();
         }
+    }
+
+    public void StartHiveMovement(float moveSpeed)
+    {
+        movement.SetSpeed(moveSpeed);
+    }
+
+    public void StopHiveMovement()
+    {
+        float currentLayerSpeed = currentLayer.printerSpeed;
+        movement.SetSpeed(currentLayerSpeed);
     }
 
     public void IncreaseCurrentHeight()

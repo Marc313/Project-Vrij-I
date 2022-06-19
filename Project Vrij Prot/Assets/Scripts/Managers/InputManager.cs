@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputManager : Singleton<InputManager>
 {
-    public enum PlayerActions { PLACE_TREE, PLACE_BLAADJE, PLACE_BLOEMETJE, COLLECT_WATER, SHOO_ANIMAL}
+    public enum PlayerActions { PLACE_TREE, PLACE_BLAADJE, PLACE_BLOEMETJE, COLLECT_WATER, SHOO_ANIMAL, NONE}
 
     private PathMovement playerMovement;
 
@@ -40,6 +40,10 @@ public class InputManager : Singleton<InputManager>
         else if (Input.GetKeyDown(KeyCode.Return))
         {
             GridManager.Instance.OnPlayerAction(playerClosestTile, PlayerActions.SHOO_ANIMAL);
+        } 
+        else
+        {
+            GridManager.Instance.OnPlayerAction(playerClosestTile, PlayerActions.NONE);
         }
     }
 }

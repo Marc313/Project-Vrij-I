@@ -3,10 +3,11 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-    public Canvas OverlayCanvas;
-    public Canvas CutsceneCanvas;
+    [SerializeField] private Canvas OverlayCanvas;
+    [SerializeField] private Canvas CutsceneCanvas;
 
-    public Text tutorialText;
+    [SerializeField] private Text tutorialText;
+    [SerializeField] private RelationBar beeHealthBar;
 
     private void Awake()
     {

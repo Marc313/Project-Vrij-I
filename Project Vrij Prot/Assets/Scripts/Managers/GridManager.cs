@@ -1,93 +1,50 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
+/** 
+ * Used for passing signals from the player to a specific tile
+ */
 public class GridManager : Singleton<GridManager>
 {
-    public Layer[] layers;
-    private int currentLayer;
+    private Layer currentLayer;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    //public enum TileType { TREE, BIRD }
-    //private static Dictionary<Vector3Int, Tile> grid = new Dictionary<Vector3Int, Tile>();
-
-    /*public static void AddTile(Vector3Int v, Tile layer)
+    private void Start()
     {
-        grid.Add(v, layer);
+        currentLayer = GameManager.Instance.Layers[0];
     }
 
-    public static Tile RemoveTile(Vector3Int v)
+    private void OnEnable()
     {
-        Tile temp = grid[v];
-
-        if(grid.ContainsKey(v))
-        {
-            grid.Remove(v);
-        }
-
-        return temp;
+        GameManager.LayerChange += UpdateCurrentLayer;
     }
 
-    public static Tile GetTile(Vector3Int v)
+    private void OnDisable()
     {
-        if (!grid.ContainsKey(v)) return null;
-        return grid[v];
+        GameManager.LayerChange -= UpdateCurrentLayer;
     }
 
-    public static bool IsTileOccupied(Vector3Int v)
+    public void OnTileEnter(Vector3Int tilePos)
     {
-        return grid.ContainsKey(v);
+        currentLayer.OnTileEnter(tilePos);
     }
 
-    public static bool IsBirdTile(Vector3Int v)
+    public void OnTileExit(Vector3Int tilePos)
     {
-        return grid.ContainsKey(v) && grid[v].GetType() == typeof(ActionTile);
-    }*/
+        currentLayer.OnTileExit(tilePos);
+    }
 
     public void OnPlayerAction(Vector3Int tilePosition, InputManager.PlayerActions action)
     {
-        layers = GameManager.Instance.Layers;
-        currentLayer = GameManager.currentLayerIndex;
+        currentLayer.OnPlayerAction(tilePosition, action);
+    }
 
-        layers[currentLayer]?.OnPlayerAction(tilePosition, action);
+    private void UpdateCurrentLayer()
+    {
+        currentLayer = GameManager.Instance.currentLayer;
     }
 }
-
-/*using System.Collections.Generic;
-using UnityEngine;
-
-public static class GridManager
-{
-    public enum TileType { TREE, BIRD }
-    private static Dictionary<Vector3Int, TileType> grid = new Dictionary<Vector3Int, TileType>();
-
-    public static void AddTile(Vector3Int v, TileType type)
-    {
-        grid.Add(v, type);
-    }
-
-    public static TileType RemoveTile(Vector3Int v)
-    {
-        TileType temp = grid[v];
-
-        if (grid.ContainsKey(v))
-        {
-            grid.Remove(v);
-        }
-
-        return temp;
-    }
-
-    public static bool IsTileOccupied(Vector3Int v)
-    {
-        return grid.ContainsKey(v);
-    }
-
-    public static bool IsBirdTile(Vector3Int v)
-    {
-        return grid.ContainsKey(v) && grid[v] == TileType.BIRD;
-    }
-}*/

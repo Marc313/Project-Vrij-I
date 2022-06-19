@@ -17,3 +17,4 @@ MonoBehaviour:
   BloemetjeBlock: {fileID: 3515278575295793361, guid: fedd3de3b4635ce40ac1ddde8d43fe89, type: 3}
   Bird: {fileID: 9058384732578477819, guid: 4ba654a425a810f4c88420556af0ba7e, type: 3}
   Water: {fileID: 8687954677457972205, guid: 1427ad9bb532131498d800beeefb16e8, type: 3}
+  BeeHive: {fileID: 4681306480815697212, guid: c3964fa08139e96449758d4851a25bbb, type: 3}

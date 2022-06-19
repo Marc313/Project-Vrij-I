@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    protected enum TileColorType { NOBLOCK, TREE, BLAADJE, BLOEMETJE}
+    protected enum TileColorType { NOBLOCK, TREE, BLAADJE, BLOEMETJE, BEE}
 
     [SerializeField] protected TileColorType colorType;
     protected TileColors tileColors;
@@ -33,7 +33,6 @@ public class Tile : MonoBehaviour
     {
         switch (colorType)
         {
-            
             case TileColorType.TREE:
                 sprite.color = tileColors.Tree;
                 break;
@@ -42,6 +41,9 @@ public class Tile : MonoBehaviour
                 break;
             case TileColorType.BLOEMETJE:
                 sprite.color = tileColors.Bloemetje;
+                break;
+            case TileColorType.BEE:
+                sprite.color = tileColors.Bee;
                 break;
             case TileColorType.NOBLOCK:
             default:
@@ -57,8 +59,7 @@ public class Tile : MonoBehaviour
         TileObject = Instantiate(BlockPrefab, blockPos, Quaternion.identity);
     }
 
-    public virtual void PerformTileAction(InputManager.PlayerActions action)
-    {
-
-    }
+    public virtual void PerformTileAction(InputManager.PlayerActions action) { }
+    public virtual void OnTileEnter() { }
+    public virtual void OnTileExit() { }
 }

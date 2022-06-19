@@ -11,5 +11,5 @@ public class TilePrefabs : ScriptableObject
     [Header("Action Tiles")]
     public GameObject Bird;
     public GameObject Water;
-
+    public GameObject BeeHive;
 }

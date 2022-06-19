@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 
 public class ActionTile : Tile
 {
-    private enum Tiletype { WATER, BIRD }
+    protected enum Tiletype { WATER, BIRD, BEE }
 
-    [SerializeField] private Tiletype type;
+    [SerializeField] protected Tiletype type;
+    protected ActionTileObject actionTileObject;
 
     protected override void Start()
     {
@@ -17,6 +19,12 @@ public class ActionTile : Tile
         {
             PlaceBlock(tilePrefabs.Water);
         }
+        else if (type == Tiletype.BEE)
+        {
+            PlaceBlock(tilePrefabs.BeeHive);
+        }
+
+        actionTileObject = TileObject.GetComponent<ActionTileObject>();
     }
 
     private void OnDisable()
@@ -25,31 +33,27 @@ public class ActionTile : Tile
         TileObject.SetActive(false);
     }
 
-    public void CollectWater()
-    {
-        TileObject.SetActive(false);
-        RelationBarManager.Instance.IncreaseBoomHealthScore(0.05f);
-    }
-
-    public void BullyBird()
-    {
-        TileObject.SetActive(false);
-        RelationBarManager.Instance.IncreaseOmgevingScore(-0.03f);
-        RelationBarManager.Instance.IncreaseBoomMachtScore(0.01f);
-    }
-
     public override void PerformTileAction(InputManager.PlayerActions action)
     {
         if(action == InputManager.PlayerActions.SHOO_ANIMAL)
         {
-            if (type == Tiletype.WATER)
-            {
-                CollectWater();
-            }
-            else if (type == Tiletype.BIRD)
-            {
-                BullyBird();
-            }
+            actionTileObject.TriggerTileObject();
+        }
+    }
+
+    public override void OnTileEnter()
+    {
+        if (type == Tiletype.BEE)
+        {
+            actionTileObject.OnTileEnter();
+        }
+    }
+
+    public override void OnTileExit()
+    {
+        if (type == Tiletype.BEE)
+        {
+            actionTileObject.OnTileExit();
         }
     }
 }

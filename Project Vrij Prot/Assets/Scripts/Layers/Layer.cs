@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -51,6 +52,22 @@ public class Layer : MonoBehaviour
     {
         Vector3Int tilePos = tile.transform.position.ToVector3Int();
         tileReferences.Add(tilePos, tile);
+    }
+
+    public void OnTileExit(Vector3Int tilePosition)
+    {
+        if (tileReferences != null && tileReferences[tilePosition] != null)
+        {
+            tileReferences[tilePosition].OnTileExit();
+        }
+    }
+
+    public void OnTileEnter(Vector3Int tilePosition)
+    {
+        if (tileReferences != null && tileReferences[tilePosition] != null)
+        {
+            tileReferences[tilePosition].OnTileEnter();
+        }
     }
 
     public void OnPlayerAction(Vector3Int tilePosition, InputManager.PlayerActions action)

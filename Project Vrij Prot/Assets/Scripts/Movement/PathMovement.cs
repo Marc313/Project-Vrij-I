@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PathMovement : MovingObject
@@ -6,11 +7,24 @@ public class PathMovement : MovingObject
     [HideInInspector] public WaypointSet currentWaypointSet;
 
     private int currentWaypointIndex;
+    private Vector3Int currentClosestTile;
     private Vector3 targetPos;        // The position of the waypoint the indicator is currently traveling to.
 
     private void Update()
     {
         MoveToTargetPos();
+        UpdateClosestTile();
+    }
+
+    private void UpdateClosestTile()
+    {
+        Vector3Int closestTile = ClosestTile();
+        if (closestTile != currentClosestTile)
+        {
+            GridManager.Instance.OnTileExit(currentClosestTile);
+            GridManager.Instance.OnTileEnter(closestTile);
+            currentClosestTile = closestTile;
+        }
     }
 
     public void StartMovement()
@@ -64,7 +78,6 @@ public class PathMovement : MovingObject
     {
         currentWaypointIndex++;
 
-        Vector3Int previousWaypoint = currentWaypointSet.waypoints[currentWaypointIndex - 1].position.ToVector3Int();
         Vector3Int nextWaypoint = currentWaypointSet.waypoints[currentWaypointIndex].position.ToVector3Int();
 
         targetPos = new Vector3(nextWaypoint.x, CurrentHeight(), nextWaypoint.z);
