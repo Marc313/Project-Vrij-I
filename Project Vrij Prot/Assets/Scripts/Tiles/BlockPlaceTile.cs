@@ -12,6 +12,15 @@ public class BlockPlaceTile : Tile
         CanPlaceBlocks = true;
     }
 
+    public override void OnTileExit()
+    {
+        if (type != TileType.NOBLOCK && TileObject == null)
+        {
+            //Change a score
+            //Debug.Log("MISSED");
+        }
+    }
+
     public override void PerformTileAction(InputManager.PlayerActions action)
     {
         if (!CanPlaceBlocks) return;
@@ -43,9 +52,10 @@ public class BlockPlaceTile : Tile
         if (type != placedBlockType)
         {
             RelationBarManager.Instance.IncreaseBoomHealthScore(-0.01f);
+            RelationBarManager.Instance.IncreaseBoomMachtScore(-0.005f);
         } else
         {
-            RelationBarManager.Instance.IncreaseBoomMachtScore(0.005f);
+            RelationBarManager.Instance.IncreaseBoomMachtScore(0.003f);
         }
     }
 }

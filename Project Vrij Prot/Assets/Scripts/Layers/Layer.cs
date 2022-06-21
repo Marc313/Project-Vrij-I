@@ -54,25 +54,27 @@ public class Layer : MonoBehaviour
         tileReferences.Add(tilePos, tile);
     }
 
-    public void OnTileExit(Vector3Int tilePosition)
-    {
-        if (tileReferences != null && tileReferences[tilePosition] != null)
-        {
-            tileReferences[tilePosition].OnTileExit();
-        }
-    }
-
     public void OnTileEnter(Vector3Int tilePosition)
     {
-        if (tileReferences != null && tileReferences[tilePosition] != null)
+        if (tileReferences != null
+            && tileReferences.ContainsKey(tilePosition))
         {
             tileReferences[tilePosition].OnTileEnter();
         }
     }
 
+    public void OnTileExit(Vector3Int tilePosition)
+    {
+        if (tileReferences != null 
+            && tileReferences.ContainsKey(tilePosition))
+        {
+            tileReferences[tilePosition].OnTileExit();
+        }
+    }
+
     public void OnPlayerAction(Vector3Int tilePosition, InputManager.PlayerActions action)
     {
-        if (tileReferences != null && tileReferences[tilePosition] != null)
+        if (tileReferences != null && tileReferences.ContainsKey(tilePosition))
         {
             tileReferences[tilePosition].PerformTileAction(action);
         }

@@ -7,7 +7,6 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private Canvas CutsceneCanvas;
 
     [SerializeField] private Text tutorialText;
-    [SerializeField] private RelationBar beeHealthBar;
 
     private void Awake()
     {

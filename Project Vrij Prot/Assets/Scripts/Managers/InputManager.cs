@@ -41,9 +41,5 @@ public class InputManager : Singleton<InputManager>
         {
             GridManager.Instance.OnPlayerAction(playerClosestTile, PlayerActions.SHOO_ANIMAL);
         } 
-        else
-        {
-            GridManager.Instance.OnPlayerAction(playerClosestTile, PlayerActions.NONE);
-        }
     }
 }

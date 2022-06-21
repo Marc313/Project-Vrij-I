@@ -77,8 +77,6 @@ public class GameManager : Singleton<GameManager>
 
     public void MoveToNextLayer()
     {
-        //PhaseChange?.Invoke(GamePhase.Birds);
-        LayerChange?.Invoke();
         if (currentLayerIndex < numOfLayers - 1)
         {
             // Do things with the layer that is over
@@ -98,6 +96,8 @@ public class GameManager : Singleton<GameManager>
             currentLayer.gameObject.SetActive(true);
             movement.SetSpeed(currentLayer.printerSpeed);
             movement.StartNewLayer(currentLayer.waypoints);
+            LayerChange?.Invoke();
+
         }
         else
         {

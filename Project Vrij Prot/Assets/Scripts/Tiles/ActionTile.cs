@@ -30,7 +30,10 @@ public class ActionTile : Tile
     private void OnDisable()
     {
         // Hide all the things again.
-        TileObject.SetActive(false);
+        if (TileObject != null)
+        {
+            TileObject.SetActive(false);
+        }
     }
 
     public override void PerformTileAction(InputManager.PlayerActions action)
