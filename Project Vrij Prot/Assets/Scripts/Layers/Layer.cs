@@ -51,7 +51,10 @@ public class Layer : MonoBehaviour
     private void AddTileReference(Tile tile)
     {
         Vector3Int tilePos = tile.transform.position.ToVector3Int();
-        tileReferences.Add(tilePos, tile);
+        if (!tileReferences.ContainsKey(tilePos))
+        {
+            tileReferences.Add(tilePos, tile);
+        }
     }
 
     public void OnTileEnter(Vector3Int tilePosition)
