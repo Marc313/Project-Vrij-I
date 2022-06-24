@@ -56,6 +56,7 @@ public class BeeHive : ActionTileObject
     private void OnHiveDestroyed()
     {
         UpdateRelationBars();
+        AudioManager.Instance.LowerPitch(0.005f);
         gameObject.SetActive(false);
         StopHiveMashing();
     }

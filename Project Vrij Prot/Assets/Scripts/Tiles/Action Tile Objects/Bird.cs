@@ -11,6 +11,7 @@ public class Bird : ActionTileObject
     {
         UpdateRelationBars();
         BullyBird();
+        AudioManager.Instance.LowerPitch(0.001f);
     }
 
     public override void UpdateRelationBars()
