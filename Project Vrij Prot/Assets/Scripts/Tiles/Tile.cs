@@ -56,7 +56,10 @@ public class Tile : MonoBehaviour
     {
         CanPlaceBlocks = false;
         Vector3 blockPos = transform.position.ToVector3Int() + 0.5f * Vector3.up;
-        TileObject = Instantiate(BlockPrefab, blockPos, Quaternion.identity);
+
+        int random = Random.Range(0, 4);
+        Quaternion randomDirection = Quaternion.Euler(0, random * 90, 0);
+        TileObject = Instantiate(BlockPrefab, blockPos, randomDirection);
     }
 
     public virtual void PerformTileAction(InputManager.PlayerActions action) { }

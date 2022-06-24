@@ -3,11 +3,30 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    [SerializeField] private float outzoomPos;
+    [SerializeField] private float normalZoomPos;
+    [SerializeField] private float inZoomPos;
+
     private Camera cam;
 
     private void Awake()
     {
         cam = GetComponent<Camera>();
+    }
+
+    public void ZoomNormal(float duration)
+    {
+        StartCoroutine(ZoomInSeconds(outzoomPos, normalZoomPos, duration));
+    }
+
+    public void ZoomOut(float duration)
+    {
+        StartCoroutine(ZoomInSeconds(normalZoomPos, outzoomPos, duration));
+    }
+
+    public void ZoomIn(float duration)
+    {
+        StartCoroutine(ZoomInSeconds(normalZoomPos, inZoomPos, duration));
     }
 
     public void ZoomTowardsTarget(Transform target)
@@ -79,6 +98,23 @@ public class CameraScript : MonoBehaviour
         cam.transform.position = targetPos;
         cam.orthographicSize = newOrthSize;
 
+        onDone?.Invoke();
+    }
+
+    public IEnumerator ZoomInSeconds(float oldOrthSize, float newOrthSize, float time, System.Action onDone = null)
+    {
+        cam.orthographicSize = oldOrthSize;
+        float passedTime = 0;
+
+        while (passedTime < time)
+        {
+            // Move closer to the target OrthSize every frame
+            cam.orthographicSize = Mathf.Lerp(oldOrthSize, newOrthSize, passedTime / time);
+            passedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        cam.orthographicSize = newOrthSize;
         onDone?.Invoke();
     }
 }

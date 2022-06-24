@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ActionTile : Tile
 {
-    protected enum Tiletype { WATER, BIRD, BEE }
+    protected enum Tiletype { WATER, INSECT, BIRD, BEE, TAK }
 
     [SerializeField] protected Tiletype type;
     protected ActionTileObject actionTileObject;
@@ -15,6 +15,10 @@ public class ActionTile : Tile
         {
             PlaceBlock(tilePrefabs.Bird);
         }
+        else if (type == Tiletype.INSECT)
+        {
+            PlaceBlock(tilePrefabs.Insect);
+        }
         else if (type == Tiletype.WATER)
         {
             PlaceBlock(tilePrefabs.Water);
@@ -22,6 +26,10 @@ public class ActionTile : Tile
         else if (type == Tiletype.BEE)
         {
             PlaceBlock(tilePrefabs.BeeHive);
+        }
+        else if (type == Tiletype.TAK)
+        {
+            PlaceBlock(tilePrefabs.Tak);
         }
 
         actionTileObject = TileObject.GetComponent<ActionTileObject>();
@@ -46,7 +54,8 @@ public class ActionTile : Tile
 
     public override void OnTileEnter()
     {
-        if (type == Tiletype.BEE)
+        if (type == Tiletype.BEE
+            || type == Tiletype.TAK)
         {
             actionTileObject.OnTileEnter();
         }
@@ -54,7 +63,8 @@ public class ActionTile : Tile
 
     public override void OnTileExit()
     {
-        if (type == Tiletype.BEE)
+        if (type == Tiletype.BEE
+            || type == Tiletype.TAK)
         {
             actionTileObject.OnTileExit();
         }

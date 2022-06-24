@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4681306480815697213}
-  - component: {fileID: 8175789355526563386}
+  - component: {fileID: -3505983816503918692}
   m_Layer: 0
-  m_Name: Bee Hive
+  m_Name: Tak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8175789355526563386
+--- !u!114 &-3505983816503918692
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4681306480815697212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d96b7a8b51a72794993c397c1e5df6d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c047917518d466498c756ea7e742331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0.4
-  MaxHealth: 15
-  healthBarPrefab: {fileID: 4172691684181230879, guid: 6ccc8d8abbd2e2b4cb7835c89ff86472, type: 3}
+  MoveSpeed: 0.2
+  MaxHealth: 25
+  healthBarPrefab: {fileID: 4172691684181230879, guid: 4916ae7fd5b5fd346bcf6312a21fffad, type: 3}
 --- !u!1 &5250253614459873336
 GameObject:
   m_ObjectHideFlags: 0

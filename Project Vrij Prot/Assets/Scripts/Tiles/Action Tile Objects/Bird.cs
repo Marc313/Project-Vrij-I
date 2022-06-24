@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class Bird : ActionTileObject
 {
     public void BullyBird()
@@ -18,5 +16,6 @@ public class Bird : ActionTileObject
     {
         RelationBarManager.Instance.IncreaseOmgevingScore(-0.03f);
         RelationBarManager.Instance.IncreaseBoomMachtScore(0.01f);
+        RelationBarManager.Instance.IncreaseBoomHealthScore(0.01f);
     }
 }

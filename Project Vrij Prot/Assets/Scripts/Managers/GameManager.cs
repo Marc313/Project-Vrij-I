@@ -7,26 +7,30 @@ public class GameManager : Singleton<GameManager>
     public enum GameState { NOTSTARTED, STARTED, ENDED }
 
     [HideInInspector] public GameState state = GameState.NOTSTARTED;
-    public Camera treeBuildCamera;
-    public Camera birdCamera;
+    public Camera isoCamera;
     public Layer[] Layers;
 
     public int CurrentHeight { get; private set; }
+    public Layer currentLayer;
 
     public static event Action LayerChange;
     public static event Action<GameState> PhaseChange;
 
-    private static int numOfLayers;
     public static int currentLayerIndex;
+    private static int numOfLayers;
 
+    private CameraScript cameraScript;
     private bool isPaused;
     private PathMovement movement;
-    public Layer currentLayer;
 
     private void Awake()
     {
         Instance = this;
         movement = FindObjectOfType<PathMovement>();
+        if (isoCamera != null)
+        {
+            cameraScript = isoCamera.GetComponent<CameraScript>();
+        }
     }
 
     private void Start()
@@ -126,13 +130,15 @@ public class GameManager : Singleton<GameManager>
 
     private void CameraZoomOut()
     {
-        treeBuildCamera.orthographicSize = 13;
-        treeBuildCamera.transform.position -= Layers.Length/2 * Vector3.up;
+        isoCamera.orthographicSize = 13;
+        isoCamera.transform.position -= Layers.Length/2 * Vector3.up;
     }
 
     public void PauseGame()
     {
         if (state == GameState.NOTSTARTED) return;
+
+        cameraScript.ZoomOut(.5f);
 
         isPaused = true;
         movement.PauseMovement();
@@ -145,6 +151,8 @@ public class GameManager : Singleton<GameManager>
             LoadMenu();
             return;
         }
+
+        cameraScript.ZoomNormal(.5f);
 
         isPaused = false;
         if (state == GameState.NOTSTARTED)
@@ -179,7 +187,6 @@ public class GameManager : Singleton<GameManager>
 
     private void MoveCamUp()
     {
-        treeBuildCamera.transform.position += Vector3.up;
-        birdCamera.transform.position += Vector3.up;
+        isoCamera.transform.position += Vector3.up;
     }
 }

@@ -10,6 +10,8 @@ public class TilePrefabs : ScriptableObject
 
     [Header("Action Tiles")]
     public GameObject Bird;
+    public GameObject Insect;
     public GameObject Water;
     public GameObject BeeHive;
+    public GameObject Tak;
 }
