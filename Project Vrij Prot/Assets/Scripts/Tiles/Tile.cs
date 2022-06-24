@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    protected enum TileColorType { NOBLOCK, TREE, BLAADJE, BLOEMETJE, BEE}
+    protected enum TileColorType { NOBLOCK, TREE, BLAADJE, BLOEMETJE, BEE, INSECT, TAK}
 
     [SerializeField] protected TileColorType colorType;
     protected TileColors tileColors;

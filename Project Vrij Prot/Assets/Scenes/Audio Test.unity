@@ -3008,6 +3008,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 6x6 Set
       objectReference: {fileID: 0}
+    - target: {fileID: 5361930719989201977, guid: 2ecb25832f9982a43a7da9be83aafba9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ecb25832f9982a43a7da9be83aafba9, type: 3}
 --- !u!1 &232696998
@@ -9896,7 +9900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9094191398394836792, guid: 0c850cc52276d88409b0f7258a7a9646, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9094191398394836793, guid: 0c850cc52276d88409b0f7258a7a9646, type: 3}
       propertyPath: m_RootOrder
@@ -27307,6 +27311,10 @@ PrefabInstance:
     - target: {fileID: 6024656031455006822, guid: 23dc05b0f53dc2e42bce80c1135a3cf5, type: 3}
       propertyPath: m_Name
       value: 6x6 Set Rotated
+      objectReference: {fileID: 0}
+    - target: {fileID: 6024656031455006822, guid: 23dc05b0f53dc2e42bce80c1135a3cf5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6024656031455006823, guid: 23dc05b0f53dc2e42bce80c1135a3cf5, type: 3}
       propertyPath: m_RootOrder

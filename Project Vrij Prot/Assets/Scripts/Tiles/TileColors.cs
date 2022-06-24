@@ -8,5 +8,7 @@ public class TileColors : ScriptableObject
     public Color Tree;
     public Color Bloemetje;
     public Color Bee;
+    public Color Insect;
+    public Color Tak;
     public Color Indicator;
 }
