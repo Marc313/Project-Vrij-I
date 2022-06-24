@@ -1,8 +1,9 @@
-using System;
 using UnityEngine;
 
 public class RelationBarManager : Singleton<RelationBarManager>
 {
+    public enum Ending { NATURE, CULTMACHT, BOOMMACHT}
+
     [SerializeField] public RelationBar omgevingBar;
     [SerializeField] public RelationBar boomMachtBar;
     [SerializeField] public RelationBar boomHealthBar;
@@ -53,5 +54,17 @@ public class RelationBarManager : Singleton<RelationBarManager>
     {
         cultScore += value;
         cultBar.UpdateSliderValue(cultScore);
+    }
+
+    public Ending DecideEnding()
+    {
+        if (boomMachtScore > omgevingScore)
+        {
+            return Ending.BOOMMACHT;
+        }
+        else
+        {
+            return Ending.NATURE;
+        }
     }
 }

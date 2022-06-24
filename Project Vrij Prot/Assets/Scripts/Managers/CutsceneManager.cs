@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Video;
 
 public class CutsceneManager : Singleton<CutsceneManager>
 {
-    public VideoPlayer IntroCutscene;
+    public CutscenePrefabs cutscenes;
     public bool PlayIntroCutscene = true;
+    public VideoPlayer player;
 
     private void Awake()
     {
@@ -15,47 +13,53 @@ public class CutsceneManager : Singleton<CutsceneManager>
 
     private void Start()
     {
-        if(PlayIntroCutscene && IntroCutscene != null)
+        if(PlayIntroCutscene && cutscenes.IntroCutscene != null)
         {
-            PlayCutscene(IntroCutscene);
+            PlayCutscene(cutscenes.IntroCutscene);
         }
     }
 
-    /*private void OnEnable()
-    {
-        GameManager.PhaseChange += PlayCutsceneOnPhaseEnd;
-    }
-    private void OnDisable()
-    {
-        GameManager.PhaseChange -= PlayCutsceneOnPhaseEnd;
-    }*/
-
     public void OnCutsceneStart()
     {
-        Debug.Log("Cutscene Start");
         UIManager.Instance.ShowCutsceneUI();        // Show the Cutscene Canvas and Hide other Canvas
         GameManager.Instance.PauseGame();           // Pause the playermovement
     }
 
     public void OnCutsceneEnd()
     {
-        Debug.Log("Cutscene End");
         UIManager.Instance.HideCutsceneUI();
         GameManager.Instance.UnpauseGame();
     }
 
-    public void PlayCutscene(VideoPlayer cutscene)
+    public void PlayCutscene(VideoClip cutscene)
     {
+        player.clip = cutscene;
         OnCutsceneStart();
-        cutscene.Play();
-        Invoke(nameof(OnCutsceneEnd), (float)IntroCutscene.length);
+        player.Play();
+        Invoke(nameof(OnCutsceneEnd), (float)cutscenes.IntroCutscene.length);
     }
 
-    /*public void PlayCutsceneOnPhaseEnd(GameManager.GamePhase newPhase)
+    public void PlayCultEnding()
     {
-        if(newPhase == GameManager.GamePhase.Birds)
+        if (cutscenes.CultEinde != null)
         {
-            PlayCutscene(Cutscene);
+            PlayCutscene(cutscenes.CultEinde);
         }
-    }*/
+    }
+
+    public void PlayNatureEnding()
+    {
+        if (cutscenes.NatureEinde != null)
+        {
+            PlayCutscene(cutscenes.NatureEinde);
+        }
+    }
+
+    public void PlayMachtEnding()
+    {
+        if (cutscenes.MachtEinde != null)
+        {
+            PlayCutscene(cutscenes.MachtEinde);
+        }
+    }
 }
