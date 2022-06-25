@@ -55,7 +55,8 @@ public class ActionTile : Tile
     public override void OnTileEnter()
     {
         if (type == Tiletype.BEE
-            || type == Tiletype.TAK)
+            || type == Tiletype.TAK
+            || type == Tiletype.BIRD)
         {
             actionTileObject.OnTileEnter();
         }
@@ -64,7 +65,8 @@ public class ActionTile : Tile
     public override void OnTileExit()
     {
         if (type == Tiletype.BEE
-            || type == Tiletype.TAK)
+            || type == Tiletype.TAK
+            || type == Tiletype.BIRD)
         {
             actionTileObject.OnTileExit();
         }

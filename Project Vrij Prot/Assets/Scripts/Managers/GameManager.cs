@@ -7,11 +7,11 @@ public class GameManager : Singleton<GameManager>
     public enum GameState { NOTSTARTED, STARTED, ENDED }
 
     [HideInInspector] public GameState state = GameState.NOTSTARTED;
+    [HideInInspector] public Layer currentLayer;
     public Camera isoCamera;
     public Layer[] Layers;
 
     public int CurrentHeight { get; private set; }
-    public Layer currentLayer;
 
     public static event Action LayerChange;
     public static event Action<GameState> PhaseChange;
@@ -130,7 +130,7 @@ public class GameManager : Singleton<GameManager>
 
     private void CameraZoomOut()
     {
-        isoCamera.orthographicSize = 13;
+        cameraScript.ZoomOut(1f);
         isoCamera.transform.position -= Layers.Length/2 * Vector3.up;
     }
 
@@ -138,7 +138,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (state == GameState.NOTSTARTED) return;
 
-        cameraScript.ZoomOut(.5f);
+        cameraScript.ZoomOut(1f);
 
         isPaused = true;
         movement.PauseMovement();
@@ -152,7 +152,7 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
-        cameraScript.ZoomNormal(.5f);
+        cameraScript.ZoomNormal(1f);
 
         isPaused = false;
         if (state == GameState.NOTSTARTED)

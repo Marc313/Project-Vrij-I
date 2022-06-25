@@ -45,6 +45,12 @@ public class Tile : MonoBehaviour
             case TileColorType.BEE:
                 sprite.color = tileColors.Bee;
                 break;
+            case TileColorType.INSECT:
+                sprite.color = tileColors.Insect;
+                break;
+            case TileColorType.TAK:
+                sprite.color = tileColors.Tak;
+                break;
             case TileColorType.NOBLOCK:
             default:
                 sprite.color = tileColors.NoBlock;

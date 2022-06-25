@@ -18,4 +18,12 @@ public class Bird : ActionTileObject
         RelationBarManager.Instance.IncreaseBoomMachtScore(0.01f);
         RelationBarManager.Instance.IncreaseBoomHealthScore(0.01f);
     }
+
+    public override void OnTileExit()
+    {
+        base.OnTileExit();
+        // When the Bird is not destroyed
+        RelationBarManager.Instance.IncreaseOmgevingScore(0.01f);
+        RelationBarManager.Instance.IncreaseBoomMachtScore(-0.01f);
+    }
 }
