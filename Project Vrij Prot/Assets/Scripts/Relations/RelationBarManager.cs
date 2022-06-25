@@ -1,13 +1,16 @@
+using System;
 using UnityEngine;
 
 public class RelationBarManager : Singleton<RelationBarManager>
 {
-    public enum Ending { NATURE, CULTMACHT, BOOMMACHT}
+    public enum Ending { NATURE, CULTMACHT, BOOMMACHT, HEALTH}
 
     [SerializeField] public RelationBar omgevingBar;
     [SerializeField] public RelationBar boomMachtBar;
     [SerializeField] public RelationBar boomHealthBar;
-    [SerializeField] public RelationBar cultBar;        // Invisiable at the start?
+    [SerializeField] public RelationBar cultBar;
+
+    public static event Action OnTreeDeath;
 
     private float omgevingScore = 0.5f;
     private float boomMachtScore = 0.1f;
@@ -49,6 +52,11 @@ public class RelationBarManager : Singleton<RelationBarManager>
     {
         boomHealthScore = Mathf.Clamp01(value + boomHealthScore);
         boomHealthBar.UpdateSliderValue(boomHealthScore);
+
+        if (boomHealthScore < 0.0001f)
+        {
+            OnTreeDeath?.Invoke();
+        }
     }
 
     public void IncreaseCultScore(float value)

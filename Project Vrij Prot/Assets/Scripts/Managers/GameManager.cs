@@ -43,6 +43,9 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    private void OnEnable() => RelationBarManager.OnTreeDeath += TreeDeathEnding;
+    private void OnDisable() => RelationBarManager.OnTreeDeath -= TreeDeathEnding;
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -88,11 +91,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            state = GameState.ENDED;
-            // Zoom out and hide all the layers. Disable movement script.
-            Layers[currentLayerIndex].gameObject.SetActive(false);
-            CameraZoomOut();
-            movement.gameObject.SetActive(false);
+            EndGame();
 
             // Check for endings
             ShowEnding();
@@ -113,7 +112,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (RelationBarManager.Instance.isCultEnding())
         {
-            state = GameState.ENDED;
+            EndGame();
             CutsceneManager.Instance.PlayCultEnding();
         } 
         else
@@ -134,6 +133,15 @@ public class GameManager : Singleton<GameManager>
         {
             CutsceneManager.Instance.PlayNatureEnding();
         }
+    }
+
+    private void EndGame()
+    {
+        state = GameState.ENDED;
+        // Zoom out and hide all the layers. Disable movement script.
+        Layers[currentLayerIndex].gameObject.SetActive(false);
+        CameraZoomOut();
+        movement.gameObject.SetActive(false);
     }
 
     private void ChangeLayer()
@@ -172,12 +180,12 @@ public class GameManager : Singleton<GameManager>
     {
         if (state == GameState.ENDED)
         {
-            AudioManager.Instance.StopMusic();
             Invoke(nameof(Restart), 5f);
             return;
         }
 
         cameraScript.ZoomNormal(1f);
+        AudioManager.Instance.ReturnPitchToGameplayPitch();
 
         isPaused = false;
         if (state == GameState.NOTSTARTED)
@@ -203,6 +211,12 @@ public class GameManager : Singleton<GameManager>
     public void IncreaseCurrentHeight()
     {
         CurrentHeight++;
+    }
+
+    public void TreeDeathEnding()
+    {
+        CutsceneManager.Instance.PlayHealthEinde();
+        EndGame();
     }
 
     public void LoadMenu()

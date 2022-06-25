@@ -11,6 +11,7 @@ public class CutscenePrefabs : ScriptableObject
     public VideoClip CultEinde;
     public VideoClip MachtEinde;
     public VideoClip NatureEinde;
+    public VideoClip HealthEinde;
 
     [Header("Cult Fleeing")]
     public VideoClip CultFleeBees;
