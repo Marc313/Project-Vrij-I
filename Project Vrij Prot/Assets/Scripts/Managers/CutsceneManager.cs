@@ -29,6 +29,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
     {
         UIManager.Instance.HideCutsceneUI();
         GameManager.Instance.UnpauseGame();
+        AudioManager.Instance.ReturnPitchToGameplayPitch();
     }
 
     public void PlayCutscene(VideoClip cutscene)
@@ -36,7 +37,7 @@ public class CutsceneManager : Singleton<CutsceneManager>
         player.clip = cutscene;
         OnCutsceneStart();
         player.Play();
-        Invoke(nameof(OnCutsceneEnd), (float)cutscene.length);
+        Invoke(nameof(OnCutsceneEnd), (float)cutscene.length + .8f);
     }
 
     public void PlayCultFleeBees ()
@@ -59,15 +60,8 @@ public class CutsceneManager : Singleton<CutsceneManager>
     {
         if (cutscenes.CultEinde != null)
         {
+            AudioManager.Instance.SetPitch(.5f);
             PlayCutscene(cutscenes.CultEinde);
-        }
-    }
-
-    public void PlayNatureEnding()
-    {
-        if (cutscenes.NatureEinde != null)
-        {
-            PlayCutscene(cutscenes.NatureEinde);
         }
     }
 
@@ -75,7 +69,17 @@ public class CutsceneManager : Singleton<CutsceneManager>
     {
         if (cutscenes.MachtEinde != null)
         {
+            AudioManager.Instance.SetPitch(.75f);
             PlayCutscene(cutscenes.MachtEinde);
+        }
+    }
+
+    public void PlayNatureEnding()
+    {
+        if (cutscenes.NatureEinde != null)
+        {
+            AudioManager.Instance.SetPitch(1.005f);
+            PlayCutscene(cutscenes.NatureEinde);
         }
     }
 }

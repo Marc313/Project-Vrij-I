@@ -14,6 +14,16 @@ public class CameraScript : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
+    private void Start()
+    {
+        FocusOnOrigin();
+    }
+
+    public void SetNormalZoomPos(float value)
+    {
+        normalZoomPos = value;
+    }
+
     public void ZoomNormal(float duration)
     {
         StartCoroutine(ZoomInSeconds(outzoomPos, normalZoomPos, duration));
@@ -40,6 +50,12 @@ public class CameraScript : MonoBehaviour
         float time = .5f;
 
         StartCoroutine(ZoomTowardsInSeconds(oldPosition, newPosition, oldOrthSize, newOrthSize, time));
+    }
+
+    public void FocusOnOrigin()
+    {
+        // Certain distance from the origin
+        transform.position = new Vector3(1, 0.5f, -1) + cam.transform.forward * -50;
     }
 
     public Vector3 CalculateNewCameraPos(Vector3 oldCameraPosition, Transform target)

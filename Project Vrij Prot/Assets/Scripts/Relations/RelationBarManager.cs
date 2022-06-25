@@ -22,6 +22,7 @@ public class RelationBarManager : Singleton<RelationBarManager>
     private void Start()
     {
         SetSliderStartValues();
+        SetCultbarActive(false);
     }
 
     private void SetSliderStartValues()

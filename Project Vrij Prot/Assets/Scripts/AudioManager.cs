@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
@@ -6,6 +7,7 @@ public class AudioManager : Singleton<AudioManager>
     public AudioSource music2;
     private AudioSource currentBGM;
 
+    private float gameplayPitch;
     private float pitchMultiplier = 1f;
 
     private void Awake()
@@ -31,6 +33,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         if (currentBGM == null) return;
 
+        gameplayPitch = currentBGM.pitch;
         if (currentBGM.isPlaying) currentBGM.UnPause();
         else currentBGM.Play();
     }
@@ -43,6 +46,17 @@ public class AudioManager : Singleton<AudioManager>
     public void LowerPitch(float difference)
     {
         currentBGM.pitch -= difference * pitchMultiplier;
+        gameplayPitch = currentBGM.pitch;
+    }
+
+    public void SetPitch(float newPitch)
+    {
+        currentBGM.pitch = newPitch;
+    }
+
+    public void ReturnPitchToGameplayPitch()
+    {
+        currentBGM.pitch = gameplayPitch;
     }
 
     public void SetPitchMultiplier(float newValue)
@@ -71,5 +85,10 @@ public class AudioManager : Singleton<AudioManager>
         }
 
         currentBGM.pitch = currentPitch;
+    }
+
+    public void StopMusic()
+    {
+        currentBGM.Stop();
     }
 }

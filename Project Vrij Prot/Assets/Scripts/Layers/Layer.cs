@@ -7,6 +7,7 @@ public class Layer : MonoBehaviour
     public float printerSpeed = 10;
     public WaypointSet waypoints;
     public bool IncreaseHeightAfterLayer;
+    public UnityEvent BeforeLayer;
     public UnityEvent AfterLayer;
 
     private Dictionary<Vector3Int, Tile> tileReferences;
@@ -22,6 +23,7 @@ public class Layer : MonoBehaviour
 
     private void OnEnable()
     {
+        BeforeLayer?.Invoke();
         GameManager.LayerChange += InvokeAfterLayerEvent;
 
         if (tileReferences.Count == 0 && tiles != null)

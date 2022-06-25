@@ -31,6 +31,7 @@ public abstract class MashingTileObject : ActionTileObject
 
         if (healthBarPrefab == null) return;
         healthBar = Instantiate(healthBarPrefab).GetComponentInChildren<RelationBar>();
+        UIManager.Instance.UpdateTutorialText("MASH ENTER");
     }
 
     private void StopHiveMashing()
@@ -38,6 +39,7 @@ public abstract class MashingTileObject : ActionTileObject
         GameManager.Instance.StopHiveMovement();
         healthBar.gameObject.SetActive(false);
         this.enabled = false;
+        UIManager.Instance.UpdateTutorialText("");
     }
 
     private float GetHealthRatio()

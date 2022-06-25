@@ -29060,7 +29060,7 @@ Transform:
   m_LocalScale: {x: 4.66101, y: 4.66101, z: 4.66101}
   m_Children: []
   m_Father: {fileID: 2086309079}
-  m_RootOrder: 33
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1370688035
 MeshRenderer:
@@ -30917,7 +30917,7 @@ Transform:
   m_LocalScale: {x: 4.66101, y: 4.66101, z: 4.66101}
   m_Children: []
   m_Father: {fileID: 2086309079}
-  m_RootOrder: 32
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1498748420
 MeshRenderer:
@@ -38144,6 +38144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  currentLayer: {fileID: 0}
   isoCamera: {fileID: 0}
   Layers:
   - {fileID: 198802928}
@@ -38151,7 +38152,6 @@ MonoBehaviour:
   - {fileID: 1530818265}
   - {fileID: 1703429746}
   - {fileID: 1573424509}
-  currentLayer: {fileID: 0}
 --- !u!1 &1872604485
 GameObject:
   m_ObjectHideFlags: 0
@@ -42334,10 +42334,10 @@ Transform:
   - {fileID: 1530606885}
   - {fileID: 973299078}
   - {fileID: 2049896255}
-  - {fileID: 216687567}
-  - {fileID: 1241475621}
   - {fileID: 1498748419}
   - {fileID: 1370688034}
+  - {fileID: 216687567}
+  - {fileID: 1241475621}
   - {fileID: 1429648524}
   - {fileID: 226934789}
   - {fileID: 2085008100}

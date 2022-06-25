@@ -14,7 +14,6 @@ public class GameManager : Singleton<GameManager>
     public int CurrentHeight { get; private set; }
 
     public static event Action LayerChange;
-    public static event Action<GameState> PhaseChange;
 
     public static int currentLayerIndex;
     private static int numOfLayers;
@@ -69,6 +68,8 @@ public class GameManager : Singleton<GameManager>
         movement.currentWaypointSet = currentLayer.waypoints;   // Make a setter
         currentLayer.gameObject.SetActive(true);
         movement.StartMovement();
+
+        cameraScript.ZoomNormal(1f);
     }
 
     public void MoveToNextLayer()
@@ -171,6 +172,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (state == GameState.ENDED)
         {
+            AudioManager.Instance.StopMusic();
             Invoke(nameof(Restart), 5f);
             return;
         }
