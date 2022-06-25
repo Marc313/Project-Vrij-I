@@ -98,6 +98,29 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public void SkipLayerBasedOnCult()
+    {
+        if (RelationBarManager.Instance.ShouldSkipTakLayer())
+        {
+            currentLayerIndex++;
+            CutsceneManager.Instance.PlayCultFleeBees();
+            // Hide cult healthbar
+        }
+    }
+
+    public void CheckCultEnding()
+    {
+        if (RelationBarManager.Instance.isCultEnding())
+        {
+            state = GameState.ENDED;
+            CutsceneManager.Instance.PlayCultEnding();
+        } 
+        else
+        {
+            CutsceneManager.Instance.PlayCultFleeBranch() ;
+        }
+    }
+
     private void ShowEnding()
     {
         RelationBarManager.Ending ending = RelationBarManager.Instance.DecideEnding();
@@ -148,7 +171,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (state == GameState.ENDED)
         {
-            LoadMenu();
+            Invoke(nameof(Restart), 5f);
             return;
         }
 
@@ -183,6 +206,11 @@ public class GameManager : Singleton<GameManager>
     public void LoadMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void MoveCamUp()

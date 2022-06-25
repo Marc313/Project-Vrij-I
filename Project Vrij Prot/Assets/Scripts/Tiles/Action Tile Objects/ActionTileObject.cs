@@ -6,4 +6,6 @@ public abstract class ActionTileObject : MonoBehaviour
     public abstract void UpdateRelationBars();
     public virtual void OnTileEnter() { }
     public virtual void OnTileExit() { }
+
+    protected bool isObjectDestroyed;
 }

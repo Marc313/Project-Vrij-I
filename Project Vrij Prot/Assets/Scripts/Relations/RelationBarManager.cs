@@ -34,26 +34,54 @@ public class RelationBarManager : Singleton<RelationBarManager>
 
     public void IncreaseOmgevingScore(float value)
     {
-        omgevingScore += value;
+        omgevingScore = Mathf.Clamp01(value + omgevingScore);
         omgevingBar.UpdateSliderValue(omgevingScore);
     }
 
     public void IncreaseBoomMachtScore(float value)
     {
-        boomMachtScore += value;
+        boomMachtScore = Mathf.Clamp01(value + boomMachtScore);
         boomMachtBar.UpdateSliderValue(boomMachtScore);
     }
 
     public void IncreaseBoomHealthScore(float value)
     {
-        boomHealthScore += value;
+        boomHealthScore = Mathf.Clamp01(value + boomHealthScore);
         boomHealthBar.UpdateSliderValue(boomHealthScore);
     }
 
     public void IncreaseCultScore(float value)
     {
-        cultScore += value;
+        cultScore = Mathf.Clamp01(value + cultScore);
         cultBar.UpdateSliderValue(cultScore);
+    }
+
+    public bool ShouldSkipTakLayer()
+    {
+        if (cultScore < .05f)
+        {
+            IncreaseCultScore(-1f);
+            return true;
+        } 
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool isCultEnding()
+    {
+        if (cultScore < .05f)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public void SetCultbarActive(bool isActive)
+    {
+        cultBar.gameObject.SetActive(isActive);
     }
 
     public Ending DecideEnding()

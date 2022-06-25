@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e89f3f1223fcf47b7ec0b58aca8790, type: 3}
   m_Name: Cutscenes
   m_EditorClassIdentifier: 
-  IntroCutscene: {fileID: 32900000, guid: e1066bde10a6d964a89525468d51f8cd, type: 3}
-  CultEinde: {fileID: 32900000, guid: 3147b25bde27a4546a835d8c16a82e32, type: 3}
-  MachtEinde: {fileID: 32900000, guid: 9af989dbeaf11db4b8613691e0268e51, type: 3}
-  NatureEinde: {fileID: 32900000, guid: 39e0a75ce9d444444808b2c14877d341, type: 3}
+  IntroCutscene: {fileID: 32900000, guid: bc8193731c9b5574098a39114f7431ac, type: 3}
+  CultEinde: {fileID: 32900000, guid: f422a106547547b4eb5568c40bc0a9b8, type: 3}
+  MachtEinde: {fileID: 32900000, guid: d8a1d0b34b9c15045ab83a45c3ee7ae5, type: 3}
+  NatureEinde: {fileID: 32900000, guid: 2b736e4e8f5bf31489628cdf16817ddb, type: 3}
+  CultFleeBees: {fileID: 32900000, guid: 3b6c7f2165b3f084595299bb844f021b, type: 3}
+  CultFleeBranch: {fileID: 32900000, guid: 0b97eac5e6a1fad459fda7da64b56c52, type: 3}

@@ -36,7 +36,23 @@ public class CutsceneManager : Singleton<CutsceneManager>
         player.clip = cutscene;
         OnCutsceneStart();
         player.Play();
-        Invoke(nameof(OnCutsceneEnd), (float)cutscenes.IntroCutscene.length);
+        Invoke(nameof(OnCutsceneEnd), (float)cutscene.length);
+    }
+
+    public void PlayCultFleeBees ()
+    {
+        if (cutscenes.CultFleeBees != null)
+        {
+            PlayCutscene(cutscenes.CultFleeBees);
+        }
+    }
+
+    public void PlayCultFleeBranch()
+    {
+        if (cutscenes.CultFleeBranch != null)
+        {
+            PlayCutscene(cutscenes.CultFleeBranch);
+        }
     }
 
     public void PlayCultEnding()

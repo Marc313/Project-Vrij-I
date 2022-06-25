@@ -51,7 +51,8 @@ public abstract class MashingTileObject : ActionTileObject
         UpdateRelationBars();
         gameObject.SetActive(false);
         StopHiveMashing();
-        AudioManager.Instance.LowerPitch(0.005f);
+        AudioManager.Instance.LowerPitch(0.01f);
+        isObjectDestroyed = true;
     }
 
     public void DecreaseHealth()

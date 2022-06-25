@@ -3,6 +3,7 @@ public class Bird : ActionTileObject
     public void BullyBird()
     {
         gameObject.SetActive(false);
+        isObjectDestroyed = true;
     }
 
     public override void TriggerTileObject()
@@ -21,7 +22,7 @@ public class Bird : ActionTileObject
 
     public override void OnTileExit()
     {
-        base.OnTileExit();
+        if (isObjectDestroyed) return;
         // When the Bird is not destroyed
         RelationBarManager.Instance.IncreaseOmgevingScore(0.01f);
         RelationBarManager.Instance.IncreaseBoomMachtScore(-0.01f);

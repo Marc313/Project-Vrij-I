@@ -16,8 +16,7 @@ public class BlockPlaceTile : Tile
     {
         if (type != TileType.NOBLOCK && TileObject == null)
         {
-            //Change a score
-            //Debug.Log("MISSED");
+            AddIncorrectScores();
         }
     }
 
@@ -43,6 +42,19 @@ public class BlockPlaceTile : Tile
         }
     }
 
+    private void AddCorrectScores()
+    {
+        RelationBarManager.Instance.IncreaseBoomMachtScore(0.004f);
+        RelationBarManager.Instance.IncreaseBoomHealthScore(0.003f);
+
+    }
+
+    private void AddIncorrectScores()
+    {
+        RelationBarManager.Instance.IncreaseBoomHealthScore(-0.003f);
+        RelationBarManager.Instance.IncreaseBoomMachtScore(-0.001f);
+    }
+
     /**
      * Checks if a block is placed on the correct tile.
      * Updates the relation bars accordingly.
@@ -51,11 +63,10 @@ public class BlockPlaceTile : Tile
     {
         if (type != placedBlockType)
         {
-            RelationBarManager.Instance.IncreaseBoomHealthScore(-0.01f);
-            RelationBarManager.Instance.IncreaseBoomMachtScore(-0.005f);
+            AddIncorrectScores();
         } else
         {
-            RelationBarManager.Instance.IncreaseBoomMachtScore(0.003f);
+            AddCorrectScores();
         }
     }
 }
