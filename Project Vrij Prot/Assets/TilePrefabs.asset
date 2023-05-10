@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7382cf4b576a02947a7a655c84a388ea, type: 3}
   m_Name: TilePrefabs
   m_EditorClassIdentifier: 
-  Treeblock: {fileID: 5302094203813085944, guid: 93d1bb80b43a061439088e72cc7c31ca, type: 3}
-  Bird: {fileID: 3905871910861676434, guid: 4ba654a425a810f4c88420556af0ba7e, type: 3}
+  Treeblock: {fileID: 4191630690649210935, guid: 93d1bb80b43a061439088e72cc7c31ca, type: 3}
+  BlaadjeBlock: {fileID: 2731208610509088362, guid: 0adad9a9c7a472d40b60885f40307c93, type: 3}
+  BloemetjeBlock: {fileID: 3515278575295793361, guid: fedd3de3b4635ce40ac1ddde8d43fe89, type: 3}
+  Bird: {fileID: 9058384732578477819, guid: 4ba654a425a810f4c88420556af0ba7e, type: 3}
+  Insect: {fileID: 9058384732578477819, guid: 5b25d327cfff0bf4d86be7cf8d430e79, type: 3}
   Water: {fileID: 8687954677457972205, guid: 1427ad9bb532131498d800beeefb16e8, type: 3}
+  BeeHive: {fileID: 4681306480815697212, guid: c3964fa08139e96449758d4851a25bbb, type: 3}
+  Tak: {fileID: 4681306480815697212, guid: 2ca919ac5b4944a448d127d874f23e57, type: 3}

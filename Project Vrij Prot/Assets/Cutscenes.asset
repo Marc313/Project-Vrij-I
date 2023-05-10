@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e89f3f1223fcf47b7ec0b58aca8790, type: 3}
+  m_Name: Cutscenes
+  m_EditorClassIdentifier: 
+  IntroCutscene: {fileID: 32900000, guid: bc8193731c9b5574098a39114f7431ac, type: 3}
+  CultEinde: {fileID: 32900000, guid: f422a106547547b4eb5568c40bc0a9b8, type: 3}
+  MachtEinde: {fileID: 32900000, guid: d8a1d0b34b9c15045ab83a45c3ee7ae5, type: 3}
+  NatureEinde: {fileID: 32900000, guid: 2b736e4e8f5bf31489628cdf16817ddb, type: 3}
+  HealthEinde: {fileID: 32900000, guid: f183379ab93253041928bbb86a61a05e, type: 3}
+  CultFleeBees: {fileID: 32900000, guid: 3b6c7f2165b3f084595299bb844f021b, type: 3}
+  CultFleeBranch: {fileID: 32900000, guid: 0b97eac5e6a1fad459fda7da64b56c52, type: 3}

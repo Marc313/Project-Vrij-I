@@ -1,0 +1,24 @@
+# Blender MTL File: 'Church3.blend'
+# Material Count: 2
+
+newmtl Material.006
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:\\Renders\\Renders\\School\\ProjectVrij\\Terrain\\TerrainVoxelTextures\\TerrainVoxelFase3.png
+
+newmtl palette.003
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:\\Renders\\Renders\\School\\ProjectVrij\\Church\\ChurchVoxel\\ChurchStage3REAL-0-Stage3.png
